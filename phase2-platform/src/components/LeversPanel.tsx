@@ -14,29 +14,38 @@ const MARKETING_LABELS: { key: keyof MarketingLevers; label: string }[] = [
   { key: 'sweepstakes', label: 'Sweepstakes' },
 ];
 
-// PLACEHOLDER — see /PLACEHOLDERS.md items 3 and 4. Inputs here are a % delta
-// numeric field for every Marketing Lever and a single generic Credit and
-// Pricing lever; neither the input type nor the credit/pricing sub-levers
-// are confirmed with the client.
+// PLACEHOLDER — see /PLACEHOLDERS.md items 3 and 4.
+// Rendered as 0-100 range sliders to match UX_V2.xlsx's actual Scroll Bar
+// controls (Min 0 / Max 100, unsigned) for every lever in this panel,
+// confirmed by reading the source file directly. The exact unit each slider
+// represents (a % delta on spend, a touchpoint count, a rate itself) is
+// still unconfirmed with the client — only the 0-100, non-negative range is
+// confirmed-real.
 export default function LeversPanel({ levers, onChange }: LeversPanelProps) {
   function setMarketing(key: keyof MarketingLevers, value: number) {
     onChange({ ...levers, marketing: { ...levers.marketing, [key]: value } });
   }
 
+  function setCreditAndPricing(key: keyof ScenarioLevers['creditAndPricing'], value: number) {
+    onChange({ ...levers, creditAndPricing: { ...levers.creditAndPricing, [key]: value } });
+  }
+
   return (
     <div className="levers-panel">
       <fieldset className="levers-group">
-        <legend>Marketing Levers (% delta from baseline)</legend>
+        <legend>Marketing Levers (0-100, % delta from baseline)</legend>
         {MARKETING_LABELS.map(({ key, label }) => (
           <label key={key} className="lever-input">
             <span>{label}</span>
             <input
-              type="number"
+              type="range"
+              min={0}
+              max={100}
               step={1}
               value={levers.marketing[key]}
               onChange={(e) => setMarketing(key, Number(e.target.value))}
             />
-            <span className="lever-unit">%</span>
+            <span className="lever-value">{levers.marketing[key]}%</span>
           </label>
         ))}
       </fieldset>
@@ -44,18 +53,33 @@ export default function LeversPanel({ levers, onChange }: LeversPanelProps) {
       <fieldset className="levers-group">
         <legend>Credit and Pricing Levers</legend>
         <label className="lever-input">
-          <span>Credit and Pricing Adjustment</span>
+          <span>Approval Rate</span>
           <input
-            type="number"
+            type="range"
+            min={0}
+            max={100}
             step={1}
-            value={levers.creditAndPricing}
-            onChange={(e) => onChange({ ...levers, creditAndPricing: Number(e.target.value) })}
+            value={levers.creditAndPricing.approvalRate}
+            onChange={(e) => setCreditAndPricing('approvalRate', Number(e.target.value))}
           />
-          <span className="lever-unit">%</span>
+          <span className="lever-value">{levers.creditAndPricing.approvalRate}%</span>
+        </label>
+        <label className="lever-input">
+          <span>Origination Rate</span>
+          <input
+            type="range"
+            min={0}
+            max={100}
+            step={1}
+            value={levers.creditAndPricing.originationRate}
+            onChange={(e) => setCreditAndPricing('originationRate', Number(e.target.value))}
+          />
+          <span className="lever-value">{levers.creditAndPricing.originationRate}%</span>
         </label>
         <p className="lever-note">
-          Placeholder single lever — real sub-levers (e.g. FICO cutoff, APR, credit score
-          percentile threshold) need client confirmation. See PLACEHOLDERS.md item 4.
+          Confirmed from UX_V2.xlsx: two named sub-levers, Approval Rate and Origination Rate
+          (not a single generic field). Exact semantics (delta vs. override, unit) still need
+          client confirmation. See PLACEHOLDERS.md item 4.
         </p>
       </fieldset>
     </div>

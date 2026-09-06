@@ -1,12 +1,10 @@
-// PLACEHOLDER — see /PLACEHOLDERS.md item 6.
-// State/Customer Type/Channel are the full distinct values from tblActuals.csv
+// State/Customer Type/Channel: full distinct values from tblActuals.csv
 // (25 states appear there; CLAUDE.md's Section 1 lists 21 confirmed workbook
-// state tabs — that mismatch is unresolved, see the registry entry, so all
-// 25 are included here rather than silently dropping 4).
-// H Tactic / Detail Tactic / Product are taken from the UX_V2.xlsx structure
-// as described in the task, not from tblActuals.csv (which only has ILP/PDL
-// at the product_cd grain) — see PLACEHOLDERS.md item 5 for the H
-// Tactic vs. Product labeling ambiguity this reflects.
+// state tabs — that mismatch is unresolved, see PLACEHOLDERS.md item 6, so
+// all 25 are included here rather than silently dropping 4). The dropdown
+// controls for these three in UX_V2.xlsx (Excel Form Controls) were found
+// unconfigured with no bound list range, so there's no source-of-truth list
+// to read from the file itself — see PLACEHOLDERS.md item 6.
 
 export const STATE_OPTIONS = [
   'AL', 'CA', 'CO', 'DE', 'FL', 'IA', 'ID', 'IN', 'KS', 'KY', 'LA', 'MI',
@@ -17,11 +15,20 @@ export const CUSTOMER_TYPE_OPTIONS = ['NEW', 'NON_NEW'];
 
 export const CHANNEL_OPTIONS = ['DIGITAL', 'PHYSICAL', 'UNKNOWN'];
 
-// See PLACEHOLDERS.md item 5 — may actually be the Product list, mislabeled.
-export const H_TACTIC_OPTIONS = ['ILP', 'FLC', 'Line of Credit', 'Payday Loan', 'Not Funded'];
+// UX_V2.xlsx's "H Tactic" dropdown (Drop Down 5, Sheet1) has no list range
+// configured at all — it's an empty combo box in the source file, not
+// mislabeled Product data (see PRODUCT_OPTIONS below for where that list
+// actually lives). These are placeholder labels only, deliberately generic
+// so they can't be mistaken for a real client-confirmed tactic list. See
+// PLACEHOLDERS.md item 5.
+export const H_TACTIC_OPTIONS = ['Tactic Alpha', 'Tactic Beta', 'Tactic Gamma'];
 
 export const DETAIL_TACTIC_OPTIONS = [
   'Paid Search', 'Paid Social', 'Prescreen', 'Referrals', 'Lead Generation', 'Sweepstakes',
 ];
 
-export const PRODUCT_OPTIONS = ['ILP', 'PDL'];
+// Confirmed from UX_V2.xlsx: a checkbox group explicitly labeled "Products"
+// (Group Box 17, Sheet1) containing exactly these 5 checkboxes. This is the
+// real source of the "ILP, FLC, Line of Credit, Payday Loan, Not Funded"
+// list — it belongs to Product, not H Tactic. See PLACEHOLDERS.md item 5.
+export const PRODUCT_OPTIONS = ['ILP', 'FLC', 'Line of Credit', 'Payday Loan', 'Not Funded'];

@@ -186,20 +186,19 @@
 }
 
 .lever-input span:first-child {
+  flex: 0 0 120px;
+}
+
+.lever-input input[type='range'] {
   flex: 1;
+  accent-color: var(--accent);
 }
 
-.lever-input input {
-  width: 70px;
-  padding: 4px 6px;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  background: var(--bg);
-  color: var(--text);
-}
-
-.lever-unit {
-  opacity: 0.7;
+.lever-value {
+  flex: 0 0 36px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.85;
 }
 
 .lever-note {

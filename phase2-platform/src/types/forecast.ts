@@ -27,7 +27,7 @@ export interface ForecastRow {
 export type ScenarioKey = 'baseline' | 'scenario1' | 'scenario2' | 'scenario3';
 
 export interface MarketingLevers {
-  paidSearch: number; // % delta from baseline spend
+  paidSearch: number; // 0-100 slider, % delta from baseline spend
   paidSocial: number;
   prescreen: number;
   referrals: number;
@@ -35,9 +35,17 @@ export interface MarketingLevers {
   sweepstakes: number;
 }
 
+// UX_V2.xlsx's "Credit and Pricing Levers" group has two named scroll-bar
+// controls per scenario, "Approval Rate" and "Origination Rate" — not one
+// generic field. See PLACEHOLDERS.md item 4.
+export interface CreditAndPricingLevers {
+  approvalRate: number; // 0-100 slider, % delta from baseline approval rate
+  originationRate: number; // 0-100 slider, % delta from baseline origination rate
+}
+
 export interface ScenarioLevers {
   marketing: MarketingLevers;
-  creditAndPricing: number; // % delta, placeholder single lever
+  creditAndPricing: CreditAndPricingLevers;
 }
 
 export type MetricView = 'count' | 'approvalRate' | 'originationRate';
