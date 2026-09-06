@@ -1,0 +1,252 @@
+.app-shell {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.app-header-note {
+  color: #b45309;
+  font-size: 13px;
+}
+
+.controls-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Filter panel */
+.filter-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px;
+  background: var(--panel-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.multiselect {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 150px;
+}
+
+.multiselect-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.multiselect-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.multiselect-caret {
+  font-size: 10px;
+  opacity: 0.6;
+}
+
+.multiselect-panel {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 10;
+  min-width: 200px;
+  max-height: 240px;
+  overflow-y: auto;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.multiselect-clear {
+  align-self: flex-end;
+  border: none;
+  background: none;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 12px;
+  padding: 2px 4px;
+  margin-bottom: 4px;
+}
+
+.multiselect-option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  font-size: 13px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.multiselect-option:hover {
+  background: var(--accent-bg);
+}
+
+/* Metric toggle */
+.metric-toggle {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: var(--panel-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.metric-toggle-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.metric-toggle-btn.active {
+  background: var(--accent);
+  color: white;
+}
+
+/* Scenario tabs */
+.scenario-tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.scenario-tab {
+  padding: 8px 16px;
+  border: none;
+  background: none;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 14px;
+  border-bottom: 2px solid transparent;
+}
+
+.scenario-tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  font-weight: 600;
+}
+
+/* Levers panel */
+.levers-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 16px;
+  background: var(--panel-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.levers-group {
+  border: none;
+  padding: 0;
+  margin: 0;
+  min-width: 260px;
+}
+
+.levers-group legend {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-h);
+  margin-bottom: 8px;
+}
+
+.lever-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.lever-input span:first-child {
+  flex: 0 0 120px;
+}
+
+.lever-input input[type='range'] {
+  flex: 1;
+  accent-color: var(--accent);
+}
+
+.lever-value {
+  flex: 0 0 36px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.85;
+}
+
+.lever-note {
+  font-size: 12px;
+  opacity: 0.75;
+  max-width: 320px;
+}
+
+/* Forecast table */
+.forecast-table-summary {
+  font-size: 12px;
+  opacity: 0.75;
+  margin-bottom: 6px;
+}
+
+.forecast-table-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.forecast-table {
+  width: 100%;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.forecast-table th,
+.forecast-table td {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.forecast-table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--panel-bg);
+  color: var(--text-h);
+  font-weight: 600;
+  z-index: 1;
+}
+
+.forecast-table .group-baseline {
+  border-left: 2px solid var(--border);
+}
+
+.forecast-table .group-scenario1,
+.forecast-table .group-scenario2,
+.forecast-table .group-scenario3 {
+  border-left: 2px solid var(--accent);
+}
