@@ -76,11 +76,6 @@ export default function LeversPanel({ levers, onChange }: LeversPanelProps) {
           />
           <span className="lever-value">{levers.creditAndPricing.originationRate}%</span>
         </label>
-        <p className="lever-note">
-          Confirmed from UX_V2.xlsx: two named sub-levers, Approval Rate and Origination Rate
-          (not a single generic field). Exact semantics (delta vs. override, unit) still need
-          client confirmation. See PLACEHOLDERS.md item 4.
-        </p>
       </fieldset>
     </div>
   );
